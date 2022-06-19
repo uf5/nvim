@@ -37,7 +37,7 @@
                                     "t" (key vim.lsp.buf :type_definition)
                                     "s" (key vim.lsp.buf :signature_help)
                                     "h" (key vim.lsp.buf :hover)
-                                    "r" (key vim.lsp.buf :references)
+                                    "R" (key vim.lsp.buf :references)
                                     ; diagnstic
                                     "k" (key vim.diagnostic :goto_prev)
                                     "j" (key vim.diagnostic :goto_next)
@@ -59,13 +59,13 @@
                ; only for one buffer
                {:buffer bufnr}))
 
+(which-key.register {"<leader>g" ["<cmd>Neogit<CR>" "Neogit"]})
+
 ;; Telescope
-(which-key.register {"<leader>bb" ["<cmd>Telescope buffers<CR>" "Buffers"]})
-(which-key.register {"<leader>pp" ["<cmd>lua require('telescope').extensions.project.project({ display_type = 'full' })<CR>" "Projects"]})
+(which-key.register {"<leader>b" ["<cmd>Telescope buffers<CR>" "Buffers"]})
+(which-key.register {"<leader>p" ["<cmd>lua require('telescope').extensions.project.project({ display_type = 'full' })<CR>" "Projects"]})
 (which-key.register {"<leader>:" ["<cmd>Telescope commands<CR>" "M-x"]})
-(which-key.register {"<leader><space>" ["<cmd>Telescope find_files<CR>" "Project Files"]})
-(which-key.register {"<leader>f" {:name "Files"
-                                  "f" ["<cmd>Telescope current_buffer_fuzzy_find<cr>" "Grep Buffer"]
-                                  "r" ["<cmd>Telescope old_files<cr>" "Recent Files"]}})
+(which-key.register {"<leader>f" ["<cmd>Telescope find_files<cr>" "Find files"]})
+(which-key.register {"<leader>F" ["<cmd>Telescope live_grep<cr>" "Greep"]})
 
 {: set-lsp-keys!}

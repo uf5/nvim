@@ -10,12 +10,6 @@
 ;; Autocommands
 (require :core.events)
 
-;; Colorscheme
-(require :core.highlights)
-
 ;; Mappings
 (require :core.keymaps)
-
-;; Statusline
-(require :core.statusline)
 

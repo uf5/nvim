@@ -31,7 +31,7 @@
                              :aniseed (pack :Olica/aniseed {:branch :develop :requires [(pack :lewis6991/impatient.nvim)]})
                              :tangerine (pack :udayvir-singh/tangerine.nvim {:requires [(pack :lewis6991/impatient.nvim)]}))]})
 
-(use-package! :eraserhd/parinfer-rust {:opt true :run "cargo build --release"})
+(use-package! :gpanders/nvim-parinfer)
 
 ;; File navigation
 (use-package! :kyazdani42/nvim-tree.lua {:cmd :NvimTreeToggle :config (load-file :nvimtree)})
@@ -93,13 +93,19 @@
                                                    :requires [(pack :rafamadriz/friendly-snippets)]})]})
 
 ;; aesthetics
+(use-package! :nvim-lualine/lualine.nvim {:config (load-file :lualine)})
 (use-package! :kyazdani42/nvim-web-devicons {:module :nvim-web-devicons})
 (use-package! :monkoose/matchparen.nvim {:config (load-file :matchparen)})
 (use-package! :Pocco81/TrueZen.nvim {:cmd :TZAtaraxis :config (load-file :truezen)})
 (use-package! :norcalli/nvim-colorizer.lua {:config (load-file :colorizer) :event [:BufRead :BufNewFile]})
+(use-package! :stevearc/dressing.nvim)
+(use-package! :mcchrish/zenbones.nvim {:config (fn []
+                                                (vim.cmd "colorscheme zenbones"))
+                                       :requires [(pack :rktjmp/lush.nvim)]})
+
+(use-package! :numToStr/Comment.nvim {:config (call-setup :Comment)})
 
 ;; Disabled by default, just uncomment them and run :PackerSync if you want
-;; (use-package! :akinsho/bufferline.nvim {:event :BufEnter :config (load-file :bufferline)})
 ;; (use-package! :rcarriga/nvim-notify {:config (load-file :notify)})
 
 ;; Notes: orgmode was previously supported, but its quite buggy and not up to part with emacs. I think neorg is the way to go. 

@@ -10,22 +10,6 @@
 ;; Set shortmess
 (set! shortmess :filnxtToOFatsIc)
 
-;; fillchar setup
-(set! fillchars {:eob " "
-                 :horiz "─"
-                 :horizup "┴"
-                 :horizdown "┬"
-                 :vert "│"
-                 :vertleft "┤"
-                 :vertright "├"
-                 :verthoriz "┼"
-                 :fold " "
-                 :diff "─"
-                 :msgsep "‾"
-                 :foldsep "│"
-                 :foldopen "▾"
-                 :foldclose "▸"})
-
 ;; Use clipboard outside Neovim
 (set! clipboard :unnamedplus)
 
@@ -40,7 +24,7 @@
 (set! noruler)
 
 ;; Numbering
-(set! nonumber)
+(set! number)
 
 ;; Smart search
 (set! smartcase)
@@ -61,12 +45,16 @@
 ;; Expand tabs
 (set! expandtab)
 
-;; Enable concealing
-(set! conceallevel 2)
+;; Disable mode message
+(set! noshowmode)
 
 ;; Enable cursorline/column
 (set! cursorline)
 (set! nocursorcolumn)
+
+;; colors
+(set! termguicolors)
+(set! background :dark)
 
 ;; Automatic split locations
 (set! splitright)
