@@ -19,9 +19,6 @@
                                   "w" ["<cmd>set wrap!<cr>" "linewrap"]
                                   "z" ["<cmd>TZAtaraxis<cr>" "truezen"]}})
 
-;; NvimTree
-(which-key.register {"<leader>op" ["<cmd>NvimTreeToggle<CR>" "nvimtree"]})
-
 ;; Conjure
 (which-key.register {"<localleader>E" "eval motion"
                      "<localleader>e" "execute"
@@ -55,10 +52,10 @@
                                     "l" [(fn [] (print (vim.inspect (vim.lsp.buf.list_workspace_folders))))
                                          "list_workspace_folders"]}
                        ; reassgn some builtin mappings
-                       "K"  (key vim.lsp.buf :hover)
                        "gd" (key vim.lsp.buf :definition)
-                       "gD" (key vim.lsp.buf :declaration)}
-               ; only for one buffer
+                       "gD" (key vim.lsp.buf :declaration)
+                       "<leader>E" (key vim.lsp.buf :hover)
+                       "<leader>e" (key vim.diagnostic :open_float)}
                {:buffer bufnr}))
 
 (which-key.register {"<leader>g" ["<cmd>Neogit<CR>" "Neogit"]})

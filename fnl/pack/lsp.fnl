@@ -9,43 +9,15 @@
            :virtual_text false
            :update_in_insert true
            :severity_sort true
-           :float {:show_header false :border :rounded}})
-  (sign_define :DiagnosticSignError {:text "" :texthl :DiagnosticSignError})
-  (sign_define :DiagnosticSignWarn {:text "" :texthl :DiagnosticSignWarn})
-  (sign_define :DiagnosticSignInfo {:text "" :texthl :DiagnosticSignInfo})
-  (sign_define :DiagnosticSignHint {:text "" :texthl :DiagnosticSignHint}))
-
-;;; Improve UI
-(let [{: with : handlers} vim.lsp]
-  (set vim.lsp.handlers.textDocument/signatureHelp
-       (with handlers.signature_help {:border :solid}))
-  (set vim.lsp.handlers.textDocument/hover
-       (with handlers.hover {:border :solid})))
+           :float {:show_header false}})
+  (sign_define :DiagnosticSignError {:text "E" :texthl :DiagnosticSignError})
+  (sign_define :DiagnosticSignWarn {:text "W" :texthl :DiagnosticSignWarn})
+  (sign_define :DiagnosticSignInfo {:text "I" :texthl :DiagnosticSignInfo})
+  (sign_define :DiagnosticSignHint {:text "H" :texthl :DiagnosticSignHint}))
 
 (fn on-attach [client bufnr]
   ;; set keymaps via which-key
-  (set-lsp-keys! bufnr)
-   ;; lsp_signature on attaching the server
-  (let [signature (require :lsp_signature)]
-    (signature.on_attach {:bind true
-                          :fix_pos true
-                          :floating_window_above_cur_line true
-                          :doc_lines 0
-                          :hint_enable false
-                          :hint_prefix "● "
-                          :hint_scheme :DiagnosticSignInfo}
-                         bufnr))
-  ;; Format buffer before saving
-  (import-macros {: autocmd! : augroup! : clear!} :macros.event-macros)
-  (local {: contains?} (require :macros.lib.seq))
-  (when (client.supports_method "textDocument/formatting")
-    (augroup! lsp-format-before-saving
-      (clear! :buffer bufnr)
-      (autocmd! BufWritePre <buffer>
-        '(vim.lsp.buf.format {:filter #(not (contains? [:jsonls :tsserver] $)) ;; add servers you don't want to format
-                              :bufnr bufnr})
-        :buffer bufnr))))
-
+  (set-lsp-keys! bufnr))
 
 ;; What should the lsp be demanded of? Normally this would
 (local capabilities (vim.lsp.protocol.make_client_capabilities))

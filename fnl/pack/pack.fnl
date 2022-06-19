@@ -26,11 +26,13 @@
                              :aniseed (pack :Olica/aniseed {:branch :develop :requires [(pack :lewis6991/impatient.nvim)]})
                              :tangerine (pack :udayvir-singh/tangerine.nvim {:requires [(pack :lewis6991/impatient.nvim)]}))]})
 
-;; (use-package! :gpanders/nvim-parinfer)
-(use-package! :eraserhd/parinfer-rust {:run "cargo build --release"})
+(use-package! :windwp/nvim-autopairs
+              {:config (call-setup :nvim-autopairs)})
+(use-package! :eraserhd/parinfer-rust
+              {:ft lisp-ft
+               :cmd "ParinferOn"
+               :run "cargo build --release"})
 
-;; File navigation
-(use-package! :kyazdani42/nvim-tree.lua {:cmd :NvimTreeToggle :config (load-file :nvimtree)})
 (use-package! :nvim-lua/telescope.nvim
               {:config (load-file :telescope)
                :cmd :Telescope
@@ -60,7 +62,6 @@
                                                 (require :pack.lsp))}) 
 
 (use-package! :ray-x/lsp_signature.nvim {:module :lsp_signature})
-(use-package! :folke/trouble.nvim {:cmd :Trouble :config (call-setup :trouble)})
 (use-package! :j-hui/fidget.nvim {:after :nvim-lspconfig :config (call-setup :fidget)})
 
 ;; git
@@ -96,11 +97,7 @@
 (use-package! :numToStr/Comment.nvim {:config (call-setup :Comment)})
 (use-package! :phaazon/hop.nvim {:config (load-file :hop)})
 
-;; Disabled by default, just uncomment them and run :PackerSync if you want
-;; (use-package! :rcarriga/nvim-notify {:config (load-file :notify)})
-
-;; Notes: orgmode was previously supported, but its quite buggy and not up to part with emacs. I think neorg is the way to go. 
-(use-package! :nvim-neorg/neorg {:config (load-file :neorg) :ft :norg :after :nvim-treesitter})
+(use-package! :itchyny/vim-haskell-indent {:ft [:haskell]})
 
 ;; At the end of the file, the unpack! macro is called to initialize packer and pass each package to the packer.nvim plugin.
 (unpack!)
