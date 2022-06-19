@@ -58,6 +58,4 @@
 
 ;; cmdline setup
 (setup.cmdline ":"
-               {:view {:entries {:name :wildmenu
-                                 :separator :|}}
-                :sources [{:name :path} {:name :cmdline}]})
+               {:sources [{:name :path} {:name :cmdline}]})

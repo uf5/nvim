@@ -10,6 +10,8 @@
 ;; easier command line mode
 (which-key.register {";" [":" "vim-ex"]})
 
+(which-key.register {"f" ["<CMD>HopWord<CR>" "Hop"]})
+
 ;; Visuals
 (which-key.register {"<leader>t" {:name "Visuals"
                                   "h" ["<cmd>TSHighlightCapturesUnderCursor<cr>" "Capture Highlight"]

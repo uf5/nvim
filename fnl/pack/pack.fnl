@@ -104,6 +104,7 @@
                                        :requires [(pack :rktjmp/lush.nvim)]})
 
 (use-package! :numToStr/Comment.nvim {:config (call-setup :Comment)})
+(use-package! :phaazon/hop.nvim {:config (load-file :hop)})
 
 ;; Disabled by default, just uncomment them and run :PackerSync if you want
 ;; (use-package! :rcarriga/nvim-notify {:config (load-file :notify)})
