@@ -31,22 +31,21 @@
                                         (expand_or_jumpable)
                                         (expand_or_jump)
                                         (fallback)))
-                                  [:i :s :c])
+                                  [:i :s])
                   :<S-Tab> (mapping (fn [fallback]
                                       (if (visible)
                                           (select_prev_item)
                                           (jumpable -1)
                                           (jump -1)
                                           (fallback)))
-                                    [:i :s :c])
+                                    [:i :s])
                   :<CR> (mapping.confirm)
                   :<C-CR> (mapping.confirm {:select true})}
         :sources [{:name :nvim_lsp}
                   {:name :luasnip}
                   {:name :path}
                   {:name :buffer}
-                  {:name :conjure}
-                  {:name :copilot}]
+                  {:name :conjure}]
         :sorting {:comparators [compare.offset
                                 compare.exact
                                 compare.score
@@ -55,7 +54,3 @@
                                 compare.sort_text
                                 compare.length
                                 compare.order]}})
-
-;; cmdline setup
-(setup.cmdline ":"
-               {:sources [{:name :path} {:name :cmdline}]})

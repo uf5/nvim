@@ -5,12 +5,7 @@
 (init {:autoremove true
               :git {:clone_timeout 300}
               :profile {:enable true}
-              :compile_path (.. (vim.fn.stdpath :config) "/lua/packer_compiled.lua")
-              :display {:header_lines 2
-                        :title " packer.nvim"
-                        :open_fn (λ open_fn []
-                                   (local {: float} (require :packer.util))
-                                   (float {:border :solid}))}})
+              :compile_path (.. (vim.fn.stdpath :config) "/lua/packer_compiled.lua")})
        
 ;; There are some plugins we only want to load for lisps. Heres a list of lispy filetypes I use
 (local lisp-ft [:fennel :clojure :lisp :racket :scheme])
@@ -31,7 +26,8 @@
                              :aniseed (pack :Olica/aniseed {:branch :develop :requires [(pack :lewis6991/impatient.nvim)]})
                              :tangerine (pack :udayvir-singh/tangerine.nvim {:requires [(pack :lewis6991/impatient.nvim)]}))]})
 
-(use-package! :gpanders/nvim-parinfer)
+;; (use-package! :gpanders/nvim-parinfer)
+(use-package! :eraserhd/parinfer-rust {:run "cargo build --release"})
 
 ;; File navigation
 (use-package! :kyazdani42/nvim-tree.lua {:cmd :NvimTreeToggle :config (load-file :nvimtree)})
@@ -71,10 +67,6 @@
 (use-package! :TimUntersberger/neogit {:config (call-setup :neogit) :cmd :Neogit})
 (use-package! :lewis6991/gitsigns.nvim {:opt true :setup (defer! :gitsigns.nvim 0) :config (call-setup :gitsigns)})
 
-;; completion/copilot
-(use-package! :zbirenbaum/copilot.lua
-              {:event :InsertEnter})
-
 (use-package! :hrsh7th/nvim-cmp
               {:config (load-file :cmp)
                :wants [:LuaSnip]
@@ -85,7 +77,6 @@
                           (pack :hrsh7th/cmp-nvim-lsp {:after :nvim-cmp})
                           (pack :PaterJason/cmp-conjure {:after :conjure})
                           (pack :saadparwaiz1/cmp_luasnip {:after :nvim-cmp})
-                          (pack :zbirenbaum/copilot-cmp {:after :copilot.lua})
                           (pack :lukas-reineke/cmp-under-comparator {:module :cmp-under-comparator})
                           (pack :L3MON4D3/LuaSnip {:event :InsertEnter
                                                    :wants :friendly-snippets
@@ -94,7 +85,6 @@
 
 ;; aesthetics
 (use-package! :nvim-lualine/lualine.nvim {:config (load-file :lualine)})
-(use-package! :kyazdani42/nvim-web-devicons {:module :nvim-web-devicons})
 (use-package! :monkoose/matchparen.nvim {:config (load-file :matchparen)})
 (use-package! :Pocco81/TrueZen.nvim {:cmd :TZAtaraxis :config (load-file :truezen)})
 (use-package! :norcalli/nvim-colorizer.lua {:config (load-file :colorizer) :event [:BufRead :BufNewFile]})
