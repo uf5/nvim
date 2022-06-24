@@ -1,6 +1,6 @@
 (local {: setup} (require :lualine))
 
-(setup {:options {:icons-enabled false
+(setup {:options {:icons_enabled false
                   :theme auto
                   :component_separators {:left ""
                                          :right ""}

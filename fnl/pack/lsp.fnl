@@ -4,7 +4,7 @@
 ;;; Diagnostics configuration
 (let [{: config : severity} vim.diagnostic
       {: sign_define} vim.fn]
-  (config {:underline {:severity {:min severity.INFO}}
+  (config {:underline {:severity {:min severity.ERROR}}
            :signs {:severity {:min severity.INFO}}
            :virtual_text false
            :update_in_insert true
